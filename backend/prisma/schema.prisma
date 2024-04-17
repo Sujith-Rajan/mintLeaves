@@ -1,0 +1,56 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model carts {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt DateTime @db.Date
+  image     String
+  price     Int
+  productId String  @unique
+  quantity  Int
+  title     String
+  total     Int
+  updatedAt DateTime @db.Date
+  user      User?   @relation(fields: [userId],references: [id])
+  userId    String? 
+}
+
+model products {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  category     String
+  createdAt    DateTime @db.Date
+  desc         String
+  image        String
+  price        Int
+  quantityType String
+  stock        Int
+  subCategory  String
+  title        String   @unique(map: "title_1")
+  updatedAt    DateTime @db.Date
+}
+
+model User {
+  id       String  @id @default(cuid()) @map("_id")
+  fullname String
+  email    String  @unique
+  password String
+  phone    String  @unique
+  avatar   String?
+  role     Role    @default(USER) 
+  cart     carts[]  
+  address  String?
+  city     String?
+  state    String?
+  zipCode  String?   
+}
+
+enum Role {
+  USER
+  ADMIN
+}
