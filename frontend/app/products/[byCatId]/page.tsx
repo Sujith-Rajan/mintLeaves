@@ -24,7 +24,8 @@ interface ProductsListByCategoryProps {
 
 
 
-const ProductsListByCategory: React.FC<ProductsListByCategoryProps>= ({setOpenMenu}) => {
+const ProductsListByCategory:React.FC<ProductsListByCategoryProps>= ({setOpenMenu}) => {
+ 
  
   const pathName = usePathname()
   const category  = pathName.split("/").pop() as string
