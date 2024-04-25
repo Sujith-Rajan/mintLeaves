@@ -1,13 +1,9 @@
 
 import React from 'react'
 import Image from 'next/image'
-import { MdLogout } from 'react-icons/md'
 import { menuItems } from '@/app/lib/utils/adminUtils'
 import MenuLink from './menuLinks/MenuLinks'
 import Link from 'next/link'
-import apiRequest from '@/app/lib/apiRequest'
-import { useDispatch } from 'react-redux'
-import { logOut } from '@/app/redux/userSlice'
 import LogOut from '../main/common/LogOut'
 
 
@@ -40,9 +36,7 @@ const Sidebar =() => {
       ))
      }
      </ul>
-    
      <LogOut/>
-  
     </div>
   )
 }

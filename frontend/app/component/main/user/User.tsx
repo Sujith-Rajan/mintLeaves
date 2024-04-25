@@ -2,11 +2,11 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
-import { IoMdLogOut } from 'react-icons/io'
 import { userProfile } from '@/app/lib/utils/clientUtils'
 import { usePathname } from 'next/navigation'
 import { useSelector } from 'react-redux'
 import { RootState } from '@/app/redux/store'
+import LogOut from '../common/LogOut'
 
 const User = () => {
     
@@ -29,9 +29,10 @@ const User = () => {
         {link.title}
         </Link> 
         ))}
-        <button className={` cursor-pointer
-         text-gray-700 hover:bg-emerald-500 hover:text-white p-2 
-         text-sm flex items-center gap-2`}><IoMdLogOut/>Logout</button>
+        <div className='w-full flex flex-col gap-8 text-red-400 p-3'>
+        <LogOut/>
+        </div>
+     
     </div>
   
   </div>

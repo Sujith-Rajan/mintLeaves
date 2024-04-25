@@ -3,9 +3,7 @@ import { userProfile } from '@/app/lib/utils/clientUtils'
 import Link from 'next/link'
 import {motion} from 'framer-motion'
 import { easeIn } from 'framer-motion/dom'
-import apiRequest from '@/app/lib/apiRequest'
 import { useDispatch, useSelector } from 'react-redux'
-import { logOut } from '@/app/redux/userSlice'
 import { RootState } from '@/app/redux/store'
 import LogOut from '../main/common/LogOut'
 
@@ -16,21 +14,12 @@ interface ProfileModalProps {
 
 const ProfileModal = ({setOpenProfileModal}: ProfileModalProps) => {
   
-  const dispatch = useDispatch()
 
   setTimeout(()=> {
     setOpenProfileModal()
   },5000)
 
-  // const logout = async() => {
-  //   try {
-  //     const res = await apiRequest.get("/auth/logout")
-  //     if(res) dispatch(logOut())
-  //   }
-  //   catch(err){
-  //     console.log(err)
-  //   }
-  // }
+  
 
   const {currentUser} = useSelector((state:RootState) => state.user)
   const role = currentUser?.role
@@ -52,9 +41,7 @@ const ProfileModal = ({setOpenProfileModal}: ProfileModalProps) => {
         </Link>
         
       ) )}
-      {/* <button className={` cursor-pointer
-         hover:bg-emerald-500 hover:text-white 
-         text-xs flex items-center gap-2`} onClick={logout}>Logout</button> */}
+    
          <LogOut/>
     </motion.div>
   )
