@@ -18,7 +18,10 @@ dotenv.config();
 
 
 const app: Express = express(); 
-const corsOption = {origin:'http://localhost:3000',credentials:true}
+const corsOption = {
+  origin:['http://www.mintleaves.in', 'http://localhost:3000'],
+  credentials:true
+}
 
 
 //////////////////////////// MIDDLEWEARS /////////////////////////////////
