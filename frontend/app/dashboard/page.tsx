@@ -1,4 +1,4 @@
-"use client"
+
 import React from "react";
 import { cards } from "../lib/utils/adminUtils";
 import Rightbar from "../component/dashboard/Rightbar";

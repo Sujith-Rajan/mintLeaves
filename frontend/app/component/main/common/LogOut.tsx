@@ -1,3 +1,4 @@
+"use client"
 import apiRequest from '@/app/lib/apiRequest'
 import { logOut } from '@/app/redux/userSlice'
 import React from 'react'

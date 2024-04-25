@@ -3,8 +3,8 @@ import Image from "next/image";
 import React, {useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { CldUploadButton } from "next-cloudinary";
-import { updateProduct } from "@/app/lib/actions/admin/productUpdate";
 import { useRouter } from "next/navigation";
+import apiRequest from "@/app/lib/apiRequest";
 
 
 
@@ -65,7 +65,7 @@ const SingleProductUpdate: React.FC<SingleProductUpdateProps> = ({ product }) =>
 
   const onSubmit: SubmitHandler<IFormInputs> = async (data) => {
     try{
-         const res = await updateProduct(data)
+      const  res = await apiRequest.put("/admin-dashboard/product",data)
          if(res) router.push("/dashboard/products")
     }
     catch(error){

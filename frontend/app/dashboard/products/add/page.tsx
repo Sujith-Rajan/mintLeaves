@@ -3,7 +3,7 @@ import Image from "next/image";
 import React, { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { CldUploadButton } from "next-cloudinary";
-import { addProduct } from "@/app/lib/actions/admin/productAdd";
+import apiRequest from "@/app/lib/apiRequest";
 
 interface IFormInputs {
   title: string
@@ -30,7 +30,9 @@ const AddProduct = () => {
 
   const onSubmit: SubmitHandler<IFormInputs> = async (data) => {
     try {
-      const res = await addProduct(data)
+      const res = await apiRequest.post('/admin-dashboard/product',data)
+    const product = res.data
+    
     }
     catch (error) {
       console.log("server action add-product", error)

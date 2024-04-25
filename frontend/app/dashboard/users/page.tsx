@@ -4,9 +4,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Search from '@/app/component/dashboard/Search';
 import Pagination from '@/app/component/dashboard/Pagination';
-import { getUsers } from '@/app/lib/actions/admin/usersGet';
-import { deleteUser } from '@/app/lib/actions/admin/userDelete';
 import { useRouter } from 'next/navigation';
+import apiRequest from '@/app/lib/apiRequest';
 
 interface SearchParams {
   q?: string;
@@ -34,16 +33,33 @@ const Users =  ({ searchParams }: { searchParams: SearchParams }) => {
     const fetchData = async () => {
       const q = searchParams?.q || '';
       const page = searchParams?.page || 1;
-      const { count, users } = await getUsers(q, page);
-      setUsers(users);
-      setCount(count);
+      
+      try{
+          const queryParams = {
+              params: {
+                q,
+                page,
+              },
+            };
+          const res = await apiRequest.get("/admin-dashboard/user",queryParams)
+          const{count , users} = res.data
+          setUsers(users);
+          setCount(count);
+      }
+      catch(err){
+          console.log(err)
+          throw new Error("Failed to fetch products!"+ err)     
+      }
+    
     };
     fetchData();
   }, [searchParams]);
 
+
   const handleDelete = async (id: string) => {
     try {
-      const res = await deleteUser(id);
+      const res = await apiRequest.delete(`/admin-dashboard/user/${id}`)
+       const user = res.data
       router.push("/dashboard/users")
       setUsers((prevUsers) => prevUsers.filter((user) =>user.id !== id));
 
@@ -51,6 +67,8 @@ const Users =  ({ searchParams }: { searchParams: SearchParams }) => {
       console.error('Error deleting product:', error);
     }
   };
+
+
 
   return (
     <div className="bg-blue-950 bg-opacity-75 mt-4 rounded-md p-4">

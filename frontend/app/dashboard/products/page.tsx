@@ -4,9 +4,9 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import Search from '@/app/component/dashboard/Search';
-import { getProducts } from '@/app/lib/actions/admin/productsGet';
 import Pagination from '@/app/component/dashboard/Pagination';
-import { deleteProduct } from '@/app/lib/actions/admin/productDelete';
+import apiRequest from '@/app/lib/apiRequest';
+import { revalidatePath } from 'next/cache';
 
 interface SearchParams {
   q?: string;
@@ -21,16 +21,31 @@ const Products =  ({ searchParams }: { searchParams: SearchParams }) => {
     const fetchData = async () => {
       const q = searchParams?.q || '';
       const page = searchParams?.page || 1;
-      const { count, products } = await getProducts(q, page);
-      setProducts(products);
-      setCount(count);
-    };
-    fetchData();
-  }, [searchParams]);
+      try{
+        const queryParams = {
+            params: {
+              q,
+              page,
+            },
+          };
+        const res = await apiRequest.get("/admin-dashboard/product",queryParams)
+        const{count , products} = res.data
+        setProducts(products);
+        setCount(count);
+    }
+    catch(err){
+        console.log(err)
+        throw new Error("Failed to fetch products!"+ err)     
+    }
+    
+    }
+    fetchData()
+  }, [searchParams,count,products]);
 
   const handleDelete = async (id: string) => {
     try {
-      await deleteProduct(id);
+      const res = await apiRequest.delete(`/admin-dashboard/product/${id}`)
+      revalidatePath("/dashboard/products");
      
       setProducts((prevProducts) => prevProducts.filter((product) => product.id !== id));
     } catch (error) {
