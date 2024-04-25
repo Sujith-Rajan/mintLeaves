@@ -18,9 +18,13 @@ interface Product {
   quantityType?: string;
 }
 
+interface MenuProps {
+  setOpenMenu: () => void;
+}
 
 
-const ProductsListByCategory = () => {
+
+const ProductsListByCategory = ({setOpenMenu}:MenuProps) => {
  
   const pathName = usePathname()
   const category  = pathName.split("/").pop() as string
@@ -54,7 +58,7 @@ const ProductsListByCategory = () => {
               <h2 className=' lg:flex uppercase text-gray-700 font-bold'>Categories</h2>
             </div>
             <div className='flex flex-col gap-2 items-start mt-4  border-2 border-gray-200 rounded-md '>
-             <CatogriesList/>
+             <CatogriesList setOpenMenu={setOpenMenu}/>
             </div>
           </div>
         
