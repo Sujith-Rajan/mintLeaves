@@ -125,7 +125,7 @@ import { TbTruckDelivery } from 'react-icons/tb'
 
 export const userProfile =[
     {
-        title:"Dashboard",
+        title:"My Dashboard",
         url:"/profile/dashboard",
         icon: MdDashboardCustomize,
     },
@@ -140,7 +140,7 @@ export const userProfile =[
         icon: ImAddressBook,
     },
     {
-        title:"Orders",
+        title:"My Orders",
         url:"/profile/orders",
         icon: TbTruckDelivery,
     },

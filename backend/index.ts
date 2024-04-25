@@ -6,15 +6,19 @@ import productRoutes from "./routes/product"
 import cartRoutes from "./routes/cart"
 import authRoutes from "./routes/auth"
 import adminRoutes from "./routes/admin"
-import {verifyAdmin } from "./middlewear/verifyToken"
+import orderRoutes from "./routes/order"
+import feedbackRoutes from "./routes/feedback"
+import { verifyAdmin } from "./middlewear/verifyToken"
 import passport from "./passport"
 import { initializeCookieSession } from './controller/authController'
+
+
 
 dotenv.config();
 
 
 const app: Express = express(); 
-const corsOption = {origin:true,credentials:true}
+const corsOption = {origin:'http://localhost:3000',credentials:true}
 
 
 //////////////////////////// MIDDLEWEARS /////////////////////////////////
@@ -31,6 +35,8 @@ app.use("/api/product",productRoutes)
 app.use("/api/cart",cartRoutes)
 app.use("/api/auth",authRoutes)
 app.use("/api/admin-dashboard",verifyAdmin,adminRoutes)
+app.use("/api/order",orderRoutes)
+app.use("/api/feedback",feedbackRoutes)
 
 const port = process.env.PORT || 8800;
 

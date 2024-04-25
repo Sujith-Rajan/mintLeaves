@@ -28,6 +28,7 @@ interface AddToCartProps {
   quantity: number;
   products: Product
   setOpenAddedModal: () => void;
+  
 }
 
 interface CartProduct extends Product {

@@ -6,6 +6,7 @@ import { easeIn, motion } from 'framer-motion';
 import { BiCart } from 'react-icons/bi';
 import Added from '../../modals/Added';
 import AddToCart from '../common/AddToCart';
+import CartModal from '../../modals/CartModal';
 
 
 
@@ -26,6 +27,7 @@ import AddToCart from '../common/AddToCart';
 
 
 const AllProducts = ({item}:Product) => {
+  
     const [quantity,setQuantity] = useState<number>(1)
     const [openAddedModal, setOpenAddedModal] = useState<string | undefined>();
     
@@ -61,7 +63,7 @@ const AllProducts = ({item}:Product) => {
            <AddToCart id={item.id} quantity={quantity} products={item} 
            setOpenAddedModal={()=>setOpenAddedModal(item.id)}
             bg={'bg-red-500'} hover={'bg-red-600'} 
-            stock={item.stock} icon={BiCart} rounded={'rounded-3xl'}/> 
+            stock={item.stock} icon={BiCart} rounded={'rounded-3xl'} /> 
 
           </div>
           <div className={`absolute ${item.stock > 0 ? 'bg-green-500' : 'bg-red-500'} rounded-md p-1 top-0 left-0`}>

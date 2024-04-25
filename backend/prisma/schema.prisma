@@ -19,6 +19,7 @@ model carts {
   updatedAt DateTime @db.Date
   user      User?   @relation(fields: [userId],references: [id])
   userId    String? 
+  
 }
 
 model products {
@@ -48,9 +49,48 @@ model User {
   city     String?
   state    String?
   zipCode  String?   
+  order    Order[]
+  feedback Feedback[]
 }
 
 enum Role {
   USER
   ADMIN
+}
+
+model Order {
+  id              String   @id @default(auto()) @map("_id") @db.ObjectId
+  slotTime        String
+  payment         Mode
+  paymentSataus   Status
+  amount          Float
+  deliveryCharge  Int?
+  disCount        Float
+  user            User?   @relation(fields: [userId],references: [id])
+  userId          String?
+  razorpayId      String?
+  orderStatus     Status
+  createdAt       DateTime @default(now())
+
+}
+
+enum Mode {
+  COD
+  CARD_UPI 
+}
+
+enum Status {
+  PENDING
+  SUCCESS
+}
+
+model Feedback {
+  id               String   @id @default(auto()) @map("_id") @db.ObjectId
+  user             User?   @relation(fields: [userId],references: [id])
+  userId           String
+  rating           Float?  @default(1)
+  ratingCount      Int?   @default(1)
+  subject          String
+  comment          String
+  createdAt        DateTime @default(now()) 
 }

@@ -61,7 +61,7 @@ const Cart = () => {
               </tr>
               <tr className='flex gap-2 bg-teal-600 hover:bg-teal-700 p-4 text-white cursor-pointer w-full'>
                 <td colSpan={2} className='w-full'>
-                  <button className='w-full flex justify-between'>
+                  <Link href={"/checkout"} className='w-full flex justify-between'>
                     <div className='uppercase flex items-center gap-2'>
                       <MdOutlineShoppingCart />
                       Proceed to checkout
@@ -69,7 +69,7 @@ const Cart = () => {
                     <div>
                       <span className='font-bold'>₹{" "}{subtotal + 30}</span>
                     </div>
-                  </button>
+                  </Link>
                 </td>
               </tr>
               <tr 

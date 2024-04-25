@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Search from '../common/Search'
 import Avatar from '../common/Avatar'
 import { IoIosMenu } from 'react-icons/io';
@@ -12,6 +12,8 @@ import CatogriesModal from '../../modals/CatogriesModal'
 import Cart from '../common/Cart';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/app/redux/store';
+import CartModal from '../../modals/CartModal';
+
 
 
 
@@ -19,9 +21,19 @@ const Navbar = () => {
     const [openMenu, setOpenMenu] = useState<boolean>(false)
     const[openCatModal,setOpenCatModal] = useState<boolean>(false)
     const [openProfileModal, setOpenProfileModal] = useState<boolean>(false)
+   const [myCart,setMyCart] = useState<boolean>(false)
     const pathName = usePathname()
      
     const {currentUser} = useSelector((state:RootState) => state.user)
+    const {products} = useSelector((state:RootState) => state.cart)
+
+    useEffect(() => {
+        if (products.length > 0) {
+            setMyCart(true);
+        }
+    }, [products])
+
+    
 
     return (
         <>
@@ -66,10 +78,12 @@ const Navbar = () => {
             <div className='flex justify-center md:hidden self-center w-full p-2'>
                 <Search />
             </div>
-          
+           
+            {myCart && pathName.substring(1).slice(0,9).startsWith('products')  && <CartModal setMyCart={()=>setMyCart(false)}/>}
             {openMenu && <MenuModals setOpenMenu={() => setOpenMenu(false)} />}
             {openProfileModal && currentUser && <ProfileModal setOpenProfileModal={()=>setOpenProfileModal(false)}/>}
             {openCatModal && <CatogriesModal setOpenCatModal={setOpenCatModal}/> }
+            
             
         </div>
         

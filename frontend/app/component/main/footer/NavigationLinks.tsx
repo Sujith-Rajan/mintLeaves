@@ -31,7 +31,7 @@ const NavigationLinks = () => {
         
         {link.links.map((item,subIndex) =>
         <Link 
-          href="/"
+          href={item === "Feedback" ? "/feedback" : ""}
         className={`${changeChevron === index ? 'flex-col' : 'hidden'} sm:flex text-white cursor-pointer`} 
         key={subIndex}>
           {item}

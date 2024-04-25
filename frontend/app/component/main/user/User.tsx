@@ -5,17 +5,19 @@ import React from 'react'
 import { IoMdLogOut } from 'react-icons/io'
 import { userProfile } from '@/app/lib/utils/clientUtils'
 import { usePathname } from 'next/navigation'
+import { useSelector } from 'react-redux'
+import { RootState } from '@/app/redux/store'
 
 const User = () => {
     
     const pathName = usePathname()
-
+    const {currentUser} = useSelector((state:RootState) => state.user)
   return (
     <div className='w-full lg:w-1/4 p-4 flex flex-col items-center gap-8 '>
     <div className='flex flex-col items-center'>
-      <Image src="/logo/avatar.png" alt="profile avatar" width={100} height={100}></Image>
-      <h2 className='font-bold'>Hi,<span className='text-emerald-500'>SUJITH RAJAN</span></h2>
-      <p className='text-gray-400'>9846522638</p>
+      <Image src={currentUser?.avatar ? currentUser.avatar :'/logo/avatar.png'}alt="profile avatar" width={120} height={100} className='rounded-full'></Image>
+      <h2 className='font-bold'>Hi,<span className='text-emerald-500'>{currentUser?.fullname}</span></h2>
+      <p className='text-gray-400'>{currentUser?.phone ? currentUser?.phone : " "}</p>
     </div>
 
     <div className='w-full flex flex-col gap-8 border-2 p-2'>

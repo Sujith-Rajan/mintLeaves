@@ -3,7 +3,7 @@ import Container from '@/app/component/main/common/Container'
 import React, { Suspense, useEffect, useState } from 'react'
 import AllProducts from '../component/main/products/AllProducts'
 import apiRequest from '../lib/apiRequest'
-import Loading from '../loading'
+
 
 interface Product {
   id: string;

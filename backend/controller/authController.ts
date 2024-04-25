@@ -25,6 +25,7 @@ interface ExtendedUser extends User {
 const age = 1000 * 60 * 60 * 24 * 7;
 
 const generateToken = ({user}:GenerateTokenProps) => {
+  
     return jwt.sign({id:user.id,role:user.role},process.env.JWT_SECRET_KEY as string,
         {
             expiresIn:age
@@ -131,7 +132,9 @@ export const loginUser = async(req:Request,res:Response) => {
 }
 
 
-/////////////////////////////GOOGLE AUTH///////////////////////////////////
+
+
+/////////////////////////////////////////  GOOGLE AUTH     //////////////////////////////////////////////////////////////////
 export const googleAuth = passport.authenticate("google", { scope: ["profile", "email"] })
 
 export const googleCallback = (req: Request, res: Response, next: NextFunction) => {
@@ -161,12 +164,18 @@ export const googleCallback = (req: Request, res: Response, next: NextFunction) 
           avatar: photos?.[0]?.value || "",
           phone: "",
           role: "USER",
-          ...user.newUser,
+            
         };
 
         req.user = updatedUser;
        
     }
+    const token = generateToken({user:user?.newUser})
+        res.cookie("token",token,{
+            httpOnly: true,
+            secure: true,
+            maxAge: age
+        })
      
     res.redirect(process.env.CLIENT_URL as string)
 
@@ -175,8 +184,10 @@ export const googleCallback = (req: Request, res: Response, next: NextFunction) 
 }
 
 export const logout = (req: Request, res: Response) => {
+ 
   req.logout(() => {})
   req.session = null
+  res.clearCookie('token')
   res.status(200).json("successfully logout")
   res.redirect(process.env.CLIENT_URL as string)
 }
@@ -191,7 +202,7 @@ export const loginSuccess = async (req: Request, res: Response) => {
 export const initializeCookieSession = () => {
   return cookieSession({
     name: 'session',
-    keys: [process.env.COOKIE_SECRET as string],
+    keys: [process.env.JWT_COOKIE_SECRET as string],
     maxAge: age,
     secure: false,
     httpOnly: true,

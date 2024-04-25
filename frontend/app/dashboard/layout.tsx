@@ -1,9 +1,9 @@
-"use client"
+
 import React from 'react'
 import Sidebar from '../component/dashboard/Sidebar'
 import Navbar from '../component/dashboard/Navbar'
 import Footer from '../component/dashboard/Footer'
-import { useAuth } from '../lib/authHook'
+
 
 
 interface Children {
@@ -11,7 +11,7 @@ interface Children {
 }
 const Layout = ({children}:Children) => {
   
-   useAuth();
+   
 
   
   

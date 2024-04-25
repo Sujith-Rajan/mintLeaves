@@ -46,3 +46,33 @@ li{
       19px 0     0 0px, 38px 0     0 5px, 57px 0     0 0px,
       19px 19px  0 5px, 38px 19px  0 0px, 57px 19px  0 0px}
   }
+
+
+  /* global.css */
+/* WebKit browsers (Chrome, Safari) */
+::-webkit-scrollbar {
+  width: 4px; /* Adjust as needed */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #09e535; 
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #f3f4f6; 
+}
+
+/* Firefox */
+body {
+  scrollbar-width: thin;
+}
+
+/* Firefox scrollbar styles */
+body::-webkit-scrollbar-thumb {
+  background-color: #1be904; 
+}
+
+body::-webkit-scrollbar-track {
+  background-color: #f3f4f6; 
+}

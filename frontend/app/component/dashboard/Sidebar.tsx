@@ -5,10 +5,16 @@ import { MdLogout } from 'react-icons/md'
 import { menuItems } from '@/app/lib/utils/adminUtils'
 import MenuLink from './menuLinks/MenuLinks'
 import Link from 'next/link'
+import apiRequest from '@/app/lib/apiRequest'
+import { useDispatch } from 'react-redux'
+import { logOut } from '@/app/redux/userSlice'
+import LogOut from '../main/common/LogOut'
 
 
 
-const Sidebar =async () => {
+const Sidebar =() => {
+
+ 
    
   return (
     <div className='p-4 flex flex-col gap-4'>
@@ -35,10 +41,7 @@ const Sidebar =async () => {
      }
      </ul>
     
-      <button className='flex items-center gap-2'> 
-      <MdLogout /> 
-      Logout
-      </button>
+     <LogOut/>
   
     </div>
   )
