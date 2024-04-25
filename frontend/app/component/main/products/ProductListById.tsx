@@ -22,12 +22,13 @@ interface ProductListByIdProps{
   stock:number 
   quantityType?:string;
   quantity:number;
- }
+ },
+ setOpenMenu: () => void;
 }
 
 
 
-const ProductListById:React.FC<ProductListByIdProps> = ({product}) => {
+const ProductListById:React.FC<ProductListByIdProps> = ({product,setOpenMenu}) => {
     const [quantity, setQuantity] = useState<number>(1)
     const [openAddedModal, setOpenAddedModal] = useState<string>()
    
@@ -58,7 +59,7 @@ const ProductListById:React.FC<ProductListByIdProps> = ({product}) => {
       </div>
 
       <div className='flex flex-col gap-2 items-start mt-4  border-2 border-gray-200 p-4 rounded-md w-full'>
-        <CatogriesList/>
+        <CatogriesList  setOpenMenu={setOpenMenu}/>
       </div>
     </div>
 

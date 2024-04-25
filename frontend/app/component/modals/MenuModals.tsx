@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
-import { easeIn, easeInOut, motion } from "framer-motion"
+import { easeIn,  motion } from "framer-motion"
 import { IoMdClose } from 'react-icons/io'
-import Link from 'next/link'
-import { FaChevronRight } from 'react-icons/fa'
 import CatogriesList from '../main/common/CatogriesList'
 
 interface MenuProps {
