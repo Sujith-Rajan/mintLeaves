@@ -22,17 +22,20 @@ interface ProductListByIdProps{
   stock:number 
   quantityType?:string;
   quantity:number;
- },
- setOpenMenu: () => void;
+ }
 }
 
 
+interface MenuProps{
+  setOpenMenu: () => void;
+}
 
-const ProductListById:React.FC<ProductListByIdProps> = ({product,setOpenMenu}) => {
+
+const ProductListById = ({product}:ProductListByIdProps,{setOpenMenu}:MenuProps) => {
     const [quantity, setQuantity] = useState<number>(1)
     const [openAddedModal, setOpenAddedModal] = useState<string>()
    
-    console.log(product)
+  
     const pathname = usePathname()
     const pId = pathname.slice(9) 
     
