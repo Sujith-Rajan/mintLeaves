@@ -18,13 +18,13 @@ interface Product {
   quantityType?: string;
 }
 
-interface ProductsListByCategoryProps {
-  setOpenMenu: () => void;
-}
+// interface ProductsListByCategoryProps {
+//   setOpenMenu: () => void;
+// }
 
 
 
-const ProductsListByCategory:React.FC<ProductsListByCategoryProps>= ({setOpenMenu}) => {
+const ProductsListByCategory= () => {
  
  
   const pathName = usePathname()
@@ -59,7 +59,7 @@ const ProductsListByCategory:React.FC<ProductsListByCategoryProps>= ({setOpenMen
               <h2 className=' lg:flex uppercase text-gray-700 font-bold'>Categories</h2>
             </div>
             <div className='flex flex-col gap-2 items-start mt-4  border-2 border-gray-200 rounded-md '>
-             <CatogriesList setOpenMenu={setOpenMenu}/>
+             {/* <CatogriesList setOpenMenu={setOpenMenu}/> */}
             </div>
           </div>
         
