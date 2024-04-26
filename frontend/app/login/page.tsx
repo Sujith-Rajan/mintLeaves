@@ -35,6 +35,7 @@ const Login = () => {
                 await authorization({})
                 setLoading(false)
                 router.push('/checkout')
+                router.refresh()
             }
        }
        catch(error){
@@ -74,7 +75,7 @@ const Login = () => {
 
 ////////////////////////////////////////// LOGIN WITH PROVIDERS//////////////////////////////////////////////////////    
     const google = () => {
-      window.open("http://localhost:8800/api/auth/google","_self")
+      window.open(`${process.env.NEXT_PUBLIC_BASE_URL}/api/auth/google`,"_self")
      }
 
      
