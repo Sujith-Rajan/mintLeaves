@@ -120,6 +120,8 @@ export const loginUser = async(req:Request,res:Response) => {
             secure: true,
             maxAge: age
         }).status(200).json(remainUserData)
+
+        res.redirect(process.env.CLIENT_URL as string)
       
     }
     catch(error){
