@@ -112,7 +112,7 @@ export const loginUser = async(req:Request,res:Response) => {
             return res.status(400).json({message:'invalid password'})
         }
 
-////////////////////////////// GET TOKEN /////////////////////////////////////////
+                ////// GET TOKEN /////
         const token = generateToken({user:user})
         const {password:userPassword,...remainUserData} = user
         res.cookie("token",token,{
