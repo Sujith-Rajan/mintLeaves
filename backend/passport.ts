@@ -25,7 +25,7 @@ passport.use(
     {
       clientID: Google_Client_Id as string,
       clientSecret: Google_Client_Secret as string,
-      callbackURL: "http://localhost:8800/api/auth/google/callback",
+      callbackURL: "https://mintleaves.onrender.com/api/auth/google/callback",
     },
     async (accessToken, refreshToken, profile: Profile, done) => {
         

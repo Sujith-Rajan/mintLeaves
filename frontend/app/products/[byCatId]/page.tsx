@@ -2,7 +2,7 @@
 import Container from '@/app/component/main/common/Container'
 import React, { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
-import CatogriesList from '@/app/component/main/common/CatogriesList'
+
 import Products from '@/app/component/main/products/ProductsByCat'
 import apiRequest from '@/app/lib/apiRequest'
 
@@ -18,9 +18,6 @@ interface Product {
   quantityType?: string;
 }
 
-// interface ProductsListByCategoryProps {
-//   setOpenMenu: () => void;
-// }
 
 
 
