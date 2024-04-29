@@ -25,6 +25,14 @@ const corsOption = {
 
 
 //////////////////////////// MIDDLEWEARS /////////////////////////////////
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', 'https://www.mintleaves.in');
+  res.setHeader('Access-Control-Allow-Methods', '*');
+  res.setHeader('Access-Control-Allow-Headers', '*');
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  next();
+});
+
 app.use(initializeCookieSession())
 app.use(passport.initialize())
 app.use(passport.session())

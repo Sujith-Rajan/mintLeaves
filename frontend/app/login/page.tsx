@@ -24,6 +24,7 @@ const Login = () => {
     const dispatch = useDispatch()
     const[authorization] = useAddUserInCartMutation()
     const {products} = useSelector((state:RootState) => state.cart)
+    const productCount = products.length
 
 //////////////////////////////////// LOGIN WITH CREDENTIALS ///////////////////////////////////////////////
     const handleLogin =async () => {
@@ -34,8 +35,10 @@ const Login = () => {
                 dispatch(loginSuccess(res.data))
                 setStatusMessage(true)
                 setLoading(false)
-
-               if(!products){
+              
+                
+               if(productCount === 0){
+                console.log(productCount)
                 router.push('/')
                 router.refresh()
                }
