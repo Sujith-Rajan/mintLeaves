@@ -19,7 +19,7 @@ dotenv.config();
 
 const app: Express = express(); 
 const corsOption = {
-  origin:['https://www.mintleaves.in', 'http://mintleaves-bn70gx6b7-sujith-rajans-projects.vercel.app','http://localhost:3000'],
+  origin:['http://www.mintleaves.in', 'http://mintleaves-bn70gx6b7-sujith-rajans-projects.vercel.app','http://localhost:3000'],
   credentials:true,
 }
 
