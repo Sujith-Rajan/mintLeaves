@@ -1,9 +1,9 @@
 "use client"
 import React, { useEffect } from 'react'
 import { useDeleteExpiredMutation, useGetCartItemQuery } from './cartApi';
-import { useDispatch, useSelector } from 'react-redux';
-import { addProductToCart, fetchCartItems } from './cartSlice';
-import { RootState } from './store';
+import { useDispatch} from 'react-redux';
+import { addProductToCart } from './cartSlice';
+
 
 type Props = {
   children: React.ReactNode;

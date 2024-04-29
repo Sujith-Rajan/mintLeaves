@@ -8,9 +8,10 @@ import Link from 'next/link'
 import axios, { AxiosError, AxiosResponse } from 'axios'
 import { useRouter } from 'next/navigation'
 import apiRequest from '../lib/apiRequest'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { loginSuccess } from '../redux/userSlice'
 import { useAddUserInCartMutation } from '../redux/cartApi'
+import { RootState } from '../redux/store'
 
 const Login = () => {
     const [loading,setLoading] = useState<boolean>(false)
@@ -22,6 +23,7 @@ const Login = () => {
     const router = useRouter()
     const dispatch = useDispatch()
     const[authorization] = useAddUserInCartMutation()
+    const {products} = useSelector((state:RootState) => state.cart)
 
 //////////////////////////////////// LOGIN WITH CREDENTIALS ///////////////////////////////////////////////
     const handleLogin =async () => {
@@ -31,9 +33,15 @@ const Login = () => {
             if(res.data){
                 dispatch(loginSuccess(res.data))
                 setStatusMessage(true)
+                setLoading(false)
+
+               if(!products){
+                router.push('/')
+                router.refresh()
+               }
                
                 await authorization({})
-                setLoading(false)
+               
                 router.push('/checkout')
                 router.refresh()
             }

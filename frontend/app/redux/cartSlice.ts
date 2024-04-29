@@ -4,7 +4,6 @@ import { createAsyncThunk,
           } from "@reduxjs/toolkit";
 import { RootState } from "./store";
 import { useGetCartItemQuery } from "./cartApi";
-import { LiaUserInjuredSolid } from "react-icons/lia";
 
 interface Product {
   id: string;

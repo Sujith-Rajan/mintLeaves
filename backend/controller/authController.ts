@@ -118,7 +118,8 @@ export const loginUser = async(req:Request,res:Response) => {
         res.cookie("token",token,{
             httpOnly: true,
             secure: true,
-            maxAge: age
+            maxAge: age,
+            sameSite:'strict'
         }).status(200).json(remainUserData)
 
         res.redirect(process.env.CLIENT_URL as string)
@@ -176,7 +177,8 @@ export const googleCallback = (req: Request, res: Response, next: NextFunction) 
         res.cookie("token",token,{
             httpOnly: true,
             secure: true,
-            maxAge: age
+            maxAge: age,
+            sameSite:'strict'
         })
      
     res.redirect(process.env.CLIENT_URL as string)
