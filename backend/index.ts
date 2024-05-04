@@ -16,17 +16,18 @@ import { initializeCookieSession } from './controller/authController'
 
 dotenv.config();
 
+const clinetUrl = process.env.CLIENT_URL as string
 
 const app: Express = express(); 
 const corsOption = {
-  origin:['https://www.mintleaves.in', 'http://mintleaves-bn70gx6b7-sujith-rajans-projects.vercel.app','http://localhost:3000'],
+  origin:['http://mintleaves-bn70gx6b7-sujith-rajans-projects.vercel.app',clinetUrl],
   credentials:true,
 }
 
 
 //////////////////////////// MIDDLEWEARS /////////////////////////////////
 app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', 'https://www.mintleaves.in');
+  res.setHeader('Access-Control-Allow-Origin',clinetUrl);
   res.setHeader(
     "Access-Control-Allow-Methods",
     "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS,CONNECT,TRACE"
