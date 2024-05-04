@@ -1,6 +1,5 @@
 import { usePostCartItemMutation, useUpdateItemMutation } from '@/app/redux/cartApi';
 import { addProductToCart } from '@/app/redux/cartSlice';
-import { RootState } from '@/app/redux/store';
 import React from 'react'
 import { IconType } from 'react-icons';
 import { useDispatch, useSelector } from 'react-redux';
@@ -68,8 +67,8 @@ const AddToCart: React.FC<AddToCartProps> = (
       try {
        
         const result: any = await postCartItem({...products, quantity: quantity, total: sum });
-        console.log(result.error.status)
-        if(result.error.status === 400){
+       
+        if (result.error && result.error.status === 400) {
           await updateCartItem({
           id: products.id, 
           quantity,
