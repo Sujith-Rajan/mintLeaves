@@ -217,12 +217,6 @@ export const addUser = async (req: Request, res: Response) => {
             userId = decode.id;
             const session = req.cookies.session
 
-            // const existCart = await prisma.carts.findMany({
-            //     where: {
-            //         userId:session,
-            //     }
-            // })
-
             if(!session){
                 res.redirect(process.env.CLIENT_URL as string)
             }
@@ -258,6 +252,9 @@ export const addUser = async (req: Request, res: Response) => {
 export const reomoveExpired = async (req: Request, res: Response) => {
     try {
         const session = req.cookies.session
+        if(!session){
+            res.redirect(process.env.CLIENT_URL as string)
+        }
         const products = await prisma.carts.findMany({
             where: {
                 userId: session,
