@@ -15,6 +15,10 @@ export const getAllCart = async (req: Request, res: Response) => {
         const token = req.cookies.token;
         const session = req.cookies.session;
 
+        if(!session || !token){
+            return
+        }
+        
         if (token) {
             const decode = jwt.verify(token, process.env.JWT_SECRET_KEY as string) as JwtPayload;
             userId = decode.id;
@@ -106,7 +110,10 @@ export const postCartItems = async (req: Request, res: Response) => {
 //CLEAR CART///////////////////////////////////////////////////////
 export const clearCart = async (req: Request, res: Response) => {
     try {
-
+        const availCart = await prisma.carts.findMany()
+        if(!availCart){
+            return
+        }
         const clearCartItems = await prisma.carts.deleteMany()
         res.status(200).json(clearCartItems)
     }

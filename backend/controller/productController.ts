@@ -73,10 +73,12 @@ export const getProductById =async(req:Request,res:Response) => {
 export const searchProducts = async(req:Request,res:Response)=>{
    
     const {searchQuery} = req.params
-    console.log(searchQuery)
+   
     try{
         let products;
-    
+        if(!searchQuery){
+            return
+        }
     if (searchQuery && searchQuery.trim() !== '') {
          products = await prisma.products.findMany({where: {
             title: {
