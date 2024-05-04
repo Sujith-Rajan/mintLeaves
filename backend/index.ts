@@ -11,6 +11,7 @@ import feedbackRoutes from "./routes/feedback"
 import { verifyAdmin } from "./middlewear/verifyToken"
 import passport from "./passport"
 import { initializeCookieSession } from './controller/authController'
+import { METHODS } from "http"
 
 
 
@@ -21,6 +22,7 @@ const clinetUrl = process.env.CLIENT_URL as string
 const app: Express = express(); 
 const corsOption = {
   origin:clinetUrl,
+  methods:["GET","POST","PUT","DELETE"],
   credentials:true,
 }
 
