@@ -20,7 +20,7 @@ const clinetUrl = process.env.CLIENT_URL as string
 
 const app: Express = express(); 
 const corsOption = {
-  origin:['http://mintleaves-bn70gx6b7-sujith-rajans-projects.vercel.app',clinetUrl],
+  origin:clinetUrl,
   credentials:true,
 }
 
