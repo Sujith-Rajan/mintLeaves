@@ -216,6 +216,16 @@ export const addUser = async (req: Request, res: Response) => {
             const decode = jwt.verify(token, process.env.JWT_SECRET_KEY as string) as JwtPayload;
             userId = decode.id;
             const session = req.cookies.session
+            const existCart = await prisma.carts.findMany({
+                where: {
+                    userId:session,
+                }
+            })
+
+            if(!existCart){
+                res.redirect(process.env.CLIENT_URL as string)
+            }
+            
             const updateUserInCart = await prisma.carts.updateMany({
                 where: {
                     userId: session,
